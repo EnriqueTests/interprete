@@ -1,0 +1,26 @@
+Programa
+{
+	Name     deco ;
+	PartNo   00 ;
+	Date     30/09/2021 ;
+	Revision 01 ;
+	Designer Engineer ;
+	Company  University of Tulsa ;
+	Assembly None ;
+	Location  ;
+	Device   g16v8 ;
+	
+	/* *************** INPUT PINS *********************/
+	PIN  5   = I0                        ; /*                                 */ 
+	PIN  6   = I1                        ; /*                                 */ 
+	PIN  7   = I2                        ; /*                                 */ 
+	PIN  8   = I3                        ; /*                                 */ 
+	
+	/* *************** OUTPUT PINS *********************/
+	PIN  12   = C                        ; /*                                 */ 
+	PIN  13   = M                        ; /*                                 */ 
+	PIN  14   = S0                        ; /*                                 */ 
+	PIN  15   = S1                        ; /*                                 */ 
+	PIN  16   = S2                        ; /*                                 */ 
+	PIN  17   = S3                        ; /*                                 */ 
+}
