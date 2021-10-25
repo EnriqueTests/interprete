@@ -49,6 +49,16 @@ public interface SimpleListener extends ParseTreeListener {
 	 */
 	void exitDeclaracion_de_revision(@NotNull SimpleParser.Declaracion_de_revisionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_disenador}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracion_de_disenador(@NotNull SimpleParser.Declaracion_de_disenadorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_disenador}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracion_de_disenador(@NotNull SimpleParser.Declaracion_de_disenadorContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SimpleParser#programa}.
 	 * @param ctx the parse tree
 	 */
@@ -108,16 +118,6 @@ public interface SimpleListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaracion_de_dispositivo(@NotNull SimpleParser.Declaracion_de_dispositivoContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_diseno}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaracion_de_diseno(@NotNull SimpleParser.Declaracion_de_disenoContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_diseno}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaracion_de_diseno(@NotNull SimpleParser.Declaracion_de_disenoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_asignacion_de_pin}.
 	 * @param ctx the parse tree

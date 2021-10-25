@@ -65,6 +65,18 @@ public class SimpleBaseListener implements SimpleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaracion_de_disenador(@NotNull SimpleParser.Declaracion_de_disenadorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_disenador(@NotNull SimpleParser.Declaracion_de_disenadorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrograma(@NotNull SimpleParser.ProgramaContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -132,18 +144,6 @@ public class SimpleBaseListener implements SimpleListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaracion_de_dispositivo(@NotNull SimpleParser.Declaracion_de_dispositivoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeclaracion_de_diseno(@NotNull SimpleParser.Declaracion_de_disenoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclaracion_de_diseno(@NotNull SimpleParser.Declaracion_de_disenoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -32,12 +32,12 @@ public class SimpleParser extends Parser {
 	public static final int
 		RULE_programa = 0, RULE_sentencia = 1, RULE_declaracion_de_nombre = 2, 
 		RULE_declaracion_de_numero_de_parte = 3, RULE_declaracion_de_fecha = 4, 
-		RULE_declaracion_de_revision = 5, RULE_declaracion_de_diseno = 6, RULE_declaracion_de_compania = 7, 
+		RULE_declaracion_de_revision = 5, RULE_declaracion_de_disenador = 6, RULE_declaracion_de_compania = 7, 
 		RULE_declaracion_de_assembly = 8, RULE_declaracion_de_location = 9, RULE_declaracion_de_dispositivo = 10, 
 		RULE_declaracion_de_comentario = 11, RULE_declaracion_de_asignacion_de_pin = 12;
 	public static final String[] ruleNames = {
 		"programa", "sentencia", "declaracion_de_nombre", "declaracion_de_numero_de_parte", 
-		"declaracion_de_fecha", "declaracion_de_revision", "declaracion_de_diseno", 
+		"declaracion_de_fecha", "declaracion_de_revision", "declaracion_de_disenador", 
 		"declaracion_de_compania", "declaracion_de_assembly", "declaracion_de_location", 
 		"declaracion_de_dispositivo", "declaracion_de_comentario", "declaracion_de_asignacion_de_pin"
 	};
@@ -128,14 +128,14 @@ public class SimpleParser extends Parser {
 		public Declaracion_de_companiaContext declaracion_de_compania() {
 			return getRuleContext(Declaracion_de_companiaContext.class,0);
 		}
-		public Declaracion_de_disenoContext declaracion_de_diseno() {
-			return getRuleContext(Declaracion_de_disenoContext.class,0);
-		}
 		public Declaracion_de_nombreContext declaracion_de_nombre() {
 			return getRuleContext(Declaracion_de_nombreContext.class,0);
 		}
 		public Declaracion_de_locationContext declaracion_de_location() {
 			return getRuleContext(Declaracion_de_locationContext.class,0);
+		}
+		public Declaracion_de_disenadorContext declaracion_de_disenador() {
+			return getRuleContext(Declaracion_de_disenadorContext.class,0);
 		}
 		public Declaracion_de_revisionContext declaracion_de_revision() {
 			return getRuleContext(Declaracion_de_revisionContext.class,0);
@@ -202,7 +202,7 @@ public class SimpleParser extends Parser {
 			case DESIGNER:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(40); declaracion_de_diseno();
+				setState(40); declaracion_de_disenador();
 				}
 				break;
 			case COMPANY:
@@ -286,6 +286,7 @@ public class SimpleParser extends Parser {
 			setState(49); match(NAME);
 			setState(50); match(IDENTIFICADOR);
 			setState(51); match(PUNTO_Y_COMA);
+			System.out.println("Declarando el nombre del proyecto");
 			}
 		}
 		catch (RecognitionException re) {
@@ -323,9 +324,10 @@ public class SimpleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(53); match(PARTNO);
-			setState(54); match(NUMERO);
-			setState(55); match(PUNTO_Y_COMA);
+			setState(54); match(PARTNO);
+			setState(55); match(NUMERO);
+			setState(56); match(PUNTO_Y_COMA);
+			System.out.println("Declarando el numero de parte");
 			}
 		}
 		catch (RecognitionException re) {
@@ -370,13 +372,14 @@ public class SimpleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(57); match(DATE);
-			setState(58); match(NUMERO);
-			setState(59); match(BARRA_INVERTIDA);
+			setState(59); match(DATE);
 			setState(60); match(NUMERO);
 			setState(61); match(BARRA_INVERTIDA);
 			setState(62); match(NUMERO);
-			setState(63); match(PUNTO_Y_COMA);
+			setState(63); match(BARRA_INVERTIDA);
+			setState(64); match(NUMERO);
+			setState(65); match(PUNTO_Y_COMA);
+			System.out.println("Declarando la fecha de creacion del proyecto");
 			}
 		}
 		catch (RecognitionException re) {
@@ -414,9 +417,10 @@ public class SimpleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(65); match(REVISION);
-			setState(66); match(NUMERO);
-			setState(67); match(PUNTO_Y_COMA);
+			setState(68); match(REVISION);
+			setState(69); match(NUMERO);
+			setState(70); match(PUNTO_Y_COMA);
+			System.out.println("Declarando de numero de revision");
 			}
 		}
 		catch (RecognitionException re) {
@@ -430,33 +434,34 @@ public class SimpleParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Declaracion_de_disenoContext extends ParserRuleContext {
+	public static class Declaracion_de_disenadorContext extends ParserRuleContext {
 		public TerminalNode DESIGNER() { return getToken(SimpleParser.DESIGNER, 0); }
 		public TerminalNode PUNTO_Y_COMA() { return getToken(SimpleParser.PUNTO_Y_COMA, 0); }
 		public TerminalNode IDENTIFICADOR() { return getToken(SimpleParser.IDENTIFICADOR, 0); }
-		public Declaracion_de_disenoContext(ParserRuleContext parent, int invokingState) {
+		public Declaracion_de_disenadorContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_declaracion_de_diseno; }
+		@Override public int getRuleIndex() { return RULE_declaracion_de_disenador; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterDeclaracion_de_diseno(this);
+			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterDeclaracion_de_disenador(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitDeclaracion_de_diseno(this);
+			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitDeclaracion_de_disenador(this);
 		}
 	}
 
-	public final Declaracion_de_disenoContext declaracion_de_diseno() throws RecognitionException {
-		Declaracion_de_disenoContext _localctx = new Declaracion_de_disenoContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_declaracion_de_diseno);
+	public final Declaracion_de_disenadorContext declaracion_de_disenador() throws RecognitionException {
+		Declaracion_de_disenadorContext _localctx = new Declaracion_de_disenadorContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_declaracion_de_disenador);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(69); match(DESIGNER);
-			setState(70); match(IDENTIFICADOR);
-			setState(71); match(PUNTO_Y_COMA);
+			setState(73); match(DESIGNER);
+			setState(74); match(IDENTIFICADOR);
+			setState(75); match(PUNTO_Y_COMA);
+			System.out.println("Declarando el nombre del disenador");
 			}
 		}
 		catch (RecognitionException re) {
@@ -498,21 +503,22 @@ public class SimpleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(73); match(COMPANY);
-			setState(77);
+			setState(78); match(COMPANY);
+			setState(82);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==IDENTIFICADOR) {
 				{
 				{
-				setState(74); match(IDENTIFICADOR);
+				setState(79); match(IDENTIFICADOR);
 				}
 				}
-				setState(79);
+				setState(84);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(80); match(PUNTO_Y_COMA);
+			setState(85); match(PUNTO_Y_COMA);
+			System.out.println("Declarando el nombre de la compania");
 			}
 		}
 		catch (RecognitionException re) {
@@ -550,9 +556,10 @@ public class SimpleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(82); match(ASSEMBLY);
-			setState(83); match(NONE);
-			setState(84); match(PUNTO_Y_COMA);
+			setState(88); match(ASSEMBLY);
+			setState(89); match(NONE);
+			setState(90); match(PUNTO_Y_COMA);
+			System.out.println("Declarando el si va a usar ensamblador");
 			}
 		}
 		catch (RecognitionException re) {
@@ -594,23 +601,24 @@ public class SimpleParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(86); match(LOCATION);
-			setState(90);
+			setState(93); match(LOCATION);
+			setState(97);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1+1 ) {
 					{
 					{
-					setState(87); match(IDENTIFICADOR);
+					setState(94); match(IDENTIFICADOR);
 					}
 					} 
 				}
-				setState(92);
+				setState(99);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
-			setState(93); match(PUNTO_Y_COMA);
+			setState(100); match(PUNTO_Y_COMA);
+			System.out.println("Declarando la locacion");
 			}
 		}
 		catch (RecognitionException re) {
@@ -648,9 +656,10 @@ public class SimpleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(95); match(DEVICE);
-			setState(96); match(G16V8);
-			setState(97); match(PUNTO_Y_COMA);
+			setState(103); match(DEVICE);
+			setState(104); match(G16V8);
+			setState(105); match(PUNTO_Y_COMA);
+			System.out.println("Declarando el nombre del dispositivo");
 			}
 		}
 		catch (RecognitionException re) {
@@ -694,24 +703,24 @@ public class SimpleParser extends Parser {
 		enterRule(_localctx, 22, RULE_declaracion_de_comentario);
 		try {
 			int _alt;
-			setState(125);
+			setState(135);
 			switch (_input.LA(1)) {
 			case INICIO_DE_COMENTARIO:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(99); match(INICIO_DE_COMENTARIO);
-				setState(103);
+				setState(108); match(INICIO_DE_COMENTARIO);
+				setState(112);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 				while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1+1 ) {
 						{
 						{
-						setState(100); match(IDENTIFICADOR);
+						setState(109); match(IDENTIFICADOR);
 						}
 						} 
 					}
-					setState(105);
+					setState(114);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 				}
@@ -722,52 +731,53 @@ public class SimpleParser extends Parser {
 			case IDENTIFICADOR:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(109);
+				setState(118);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 				while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1+1 ) {
 						{
 						{
-						setState(106); match(ASTERISCO);
+						setState(115); match(ASTERISCO);
 						}
 						} 
 					}
-					setState(111);
+					setState(120);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 				}
-				setState(115);
+				setState(124);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 				while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1+1 ) {
 						{
 						{
-						setState(112); match(IDENTIFICADOR);
+						setState(121); match(IDENTIFICADOR);
 						}
 						} 
 					}
-					setState(117);
+					setState(126);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 				}
-				setState(121);
+				setState(130);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 				while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1+1 ) {
 						{
 						{
-						setState(118); match(ASTERISCO);
+						setState(127); match(ASTERISCO);
 						}
 						} 
 					}
-					setState(123);
+					setState(132);
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 				}
-				setState(124); match(FIN_DE_COMENTARIO);
+				setState(133); match(FIN_DE_COMENTARIO);
+				System.out.println("Declarando un comentario");
 				}
 				break;
 			default:
@@ -814,19 +824,20 @@ public class SimpleParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(127); match(PIN);
-			setState(128); match(NUMERO);
-			setState(129); match(ASIGNACION);
-			setState(130); match(IDENTIFICADOR);
-			setState(131); match(PUNTO_Y_COMA);
-			setState(133);
+			setState(137); match(PIN);
+			setState(138); match(NUMERO);
+			setState(139); match(ASIGNACION);
+			setState(140); match(IDENTIFICADOR);
+			setState(141); match(PUNTO_Y_COMA);
+			setState(143);
 			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				{
-				setState(132); declaracion_de_comentario();
+				setState(142); declaracion_de_comentario();
 				}
 				break;
 			}
+			System.out.println("Declarando un pin");
 			}
 		}
 		catch (RecognitionException re) {
@@ -841,42 +852,46 @@ public class SimpleParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\37\u008a\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\37\u0096\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\3\2\7\2 \n\2\f\2\16\2#\13\2\3"+
 		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\62\n\3\3\4\3\4"+
-		"\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3"+
-		"\7\3\b\3\b\3\b\3\b\3\t\3\t\7\tN\n\t\f\t\16\tQ\13\t\3\t\3\t\3\n\3\n\3\n"+
-		"\3\n\3\13\3\13\7\13[\n\13\f\13\16\13^\13\13\3\13\3\13\3\f\3\f\3\f\3\f"+
-		"\3\r\3\r\7\rh\n\r\f\r\16\rk\13\r\3\r\7\rn\n\r\f\r\16\rq\13\r\3\r\7\rt"+
-		"\n\r\f\r\16\rw\13\r\3\r\7\rz\n\r\f\r\16\r}\13\r\3\r\5\r\u0080\n\r\3\16"+
-		"\3\16\3\16\3\16\3\16\3\16\5\16\u0088\n\16\3\16\7\\iou{\2\17\2\4\6\b\n"+
-		"\f\16\20\22\24\26\30\32\2\2\u008f\2\34\3\2\2\2\4\61\3\2\2\2\6\63\3\2\2"+
-		"\2\b\67\3\2\2\2\n;\3\2\2\2\fC\3\2\2\2\16G\3\2\2\2\20K\3\2\2\2\22T\3\2"+
-		"\2\2\24X\3\2\2\2\26a\3\2\2\2\30\177\3\2\2\2\32\u0081\3\2\2\2\34\35\7\3"+
-		"\2\2\35!\7\26\2\2\36 \5\4\3\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"\3"+
-		"\2\2\2\"$\3\2\2\2#!\3\2\2\2$%\7\27\2\2%\3\3\2\2\2&\62\5\6\4\2\'\62\5\b"+
-		"\5\2(\62\5\n\6\2)\62\5\f\7\2*\62\5\16\b\2+\62\5\20\t\2,\62\5\22\n\2-\62"+
-		"\5\24\13\2.\62\5\26\f\2/\62\5\30\r\2\60\62\5\32\16\2\61&\3\2\2\2\61\'"+
-		"\3\2\2\2\61(\3\2\2\2\61)\3\2\2\2\61*\3\2\2\2\61+\3\2\2\2\61,\3\2\2\2\61"+
-		"-\3\2\2\2\61.\3\2\2\2\61/\3\2\2\2\61\60\3\2\2\2\62\5\3\2\2\2\63\64\7\4"+
-		"\2\2\64\65\7\35\2\2\65\66\7\30\2\2\66\7\3\2\2\2\678\7\5\2\289\7\36\2\2"+
-		"9:\7\30\2\2:\t\3\2\2\2;<\7\6\2\2<=\7\36\2\2=>\7\34\2\2>?\7\36\2\2?@\7"+
-		"\34\2\2@A\7\36\2\2AB\7\30\2\2B\13\3\2\2\2CD\7\7\2\2DE\7\36\2\2EF\7\30"+
-		"\2\2F\r\3\2\2\2GH\7\b\2\2HI\7\35\2\2IJ\7\30\2\2J\17\3\2\2\2KO\7\t\2\2"+
-		"LN\7\35\2\2ML\3\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PR\3\2\2\2QO\3\2\2"+
-		"\2RS\7\30\2\2S\21\3\2\2\2TU\7\n\2\2UV\7\13\2\2VW\7\30\2\2W\23\3\2\2\2"+
-		"X\\\7\f\2\2Y[\7\35\2\2ZY\3\2\2\2[^\3\2\2\2\\]\3\2\2\2\\Z\3\2\2\2]_\3\2"+
-		"\2\2^\\\3\2\2\2_`\7\30\2\2`\25\3\2\2\2ab\7\r\2\2bc\7\16\2\2cd\7\30\2\2"+
-		"d\27\3\2\2\2ei\7\31\2\2fh\7\35\2\2gf\3\2\2\2hk\3\2\2\2ij\3\2\2\2ig\3\2"+
-		"\2\2j\u0080\3\2\2\2ki\3\2\2\2ln\7\33\2\2ml\3\2\2\2nq\3\2\2\2op\3\2\2\2"+
-		"om\3\2\2\2pu\3\2\2\2qo\3\2\2\2rt\7\35\2\2sr\3\2\2\2tw\3\2\2\2uv\3\2\2"+
-		"\2us\3\2\2\2v{\3\2\2\2wu\3\2\2\2xz\7\33\2\2yx\3\2\2\2z}\3\2\2\2{|\3\2"+
-		"\2\2{y\3\2\2\2|~\3\2\2\2}{\3\2\2\2~\u0080\7\32\2\2\177e\3\2\2\2\177o\3"+
-		"\2\2\2\u0080\31\3\2\2\2\u0081\u0082\7\17\2\2\u0082\u0083\7\36\2\2\u0083"+
-		"\u0084\7\23\2\2\u0084\u0085\7\35\2\2\u0085\u0087\7\30\2\2\u0086\u0088"+
-		"\5\30\r\2\u0087\u0086\3\2\2\2\u0087\u0088\3\2\2\2\u0088\33\3\2\2\2\f!"+
-		"\61O\\iou{\177\u0087";
+		"\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3"+
+		"\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\t\3\t\7\tS\n\t\f\t\16\tV\13\t"+
+		"\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\7\13b\n\13\f\13\16\13e\13\13"+
+		"\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\r\3\r\7\rq\n\r\f\r\16\rt\13\r\3"+
+		"\r\7\rw\n\r\f\r\16\rz\13\r\3\r\7\r}\n\r\f\r\16\r\u0080\13\r\3\r\7\r\u0083"+
+		"\n\r\f\r\16\r\u0086\13\r\3\r\3\r\5\r\u008a\n\r\3\16\3\16\3\16\3\16\3\16"+
+		"\3\16\5\16\u0092\n\16\3\16\3\16\3\16\7crx~\u0084\2\17\2\4\6\b\n\f\16\20"+
+		"\22\24\26\30\32\2\2\u009b\2\34\3\2\2\2\4\61\3\2\2\2\6\63\3\2\2\2\b8\3"+
+		"\2\2\2\n=\3\2\2\2\fF\3\2\2\2\16K\3\2\2\2\20P\3\2\2\2\22Z\3\2\2\2\24_\3"+
+		"\2\2\2\26i\3\2\2\2\30\u0089\3\2\2\2\32\u008b\3\2\2\2\34\35\7\3\2\2\35"+
+		"!\7\26\2\2\36 \5\4\3\2\37\36\3\2\2\2 #\3\2\2\2!\37\3\2\2\2!\"\3\2\2\2"+
+		"\"$\3\2\2\2#!\3\2\2\2$%\7\27\2\2%\3\3\2\2\2&\62\5\6\4\2\'\62\5\b\5\2("+
+		"\62\5\n\6\2)\62\5\f\7\2*\62\5\16\b\2+\62\5\20\t\2,\62\5\22\n\2-\62\5\24"+
+		"\13\2.\62\5\26\f\2/\62\5\30\r\2\60\62\5\32\16\2\61&\3\2\2\2\61\'\3\2\2"+
+		"\2\61(\3\2\2\2\61)\3\2\2\2\61*\3\2\2\2\61+\3\2\2\2\61,\3\2\2\2\61-\3\2"+
+		"\2\2\61.\3\2\2\2\61/\3\2\2\2\61\60\3\2\2\2\62\5\3\2\2\2\63\64\7\4\2\2"+
+		"\64\65\7\35\2\2\65\66\7\30\2\2\66\67\b\4\1\2\67\7\3\2\2\289\7\5\2\29:"+
+		"\7\36\2\2:;\7\30\2\2;<\b\5\1\2<\t\3\2\2\2=>\7\6\2\2>?\7\36\2\2?@\7\34"+
+		"\2\2@A\7\36\2\2AB\7\34\2\2BC\7\36\2\2CD\7\30\2\2DE\b\6\1\2E\13\3\2\2\2"+
+		"FG\7\7\2\2GH\7\36\2\2HI\7\30\2\2IJ\b\7\1\2J\r\3\2\2\2KL\7\b\2\2LM\7\35"+
+		"\2\2MN\7\30\2\2NO\b\b\1\2O\17\3\2\2\2PT\7\t\2\2QS\7\35\2\2RQ\3\2\2\2S"+
+		"V\3\2\2\2TR\3\2\2\2TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\30\2\2XY\b\t\1\2"+
+		"Y\21\3\2\2\2Z[\7\n\2\2[\\\7\13\2\2\\]\7\30\2\2]^\b\n\1\2^\23\3\2\2\2_"+
+		"c\7\f\2\2`b\7\35\2\2a`\3\2\2\2be\3\2\2\2cd\3\2\2\2ca\3\2\2\2df\3\2\2\2"+
+		"ec\3\2\2\2fg\7\30\2\2gh\b\13\1\2h\25\3\2\2\2ij\7\r\2\2jk\7\16\2\2kl\7"+
+		"\30\2\2lm\b\f\1\2m\27\3\2\2\2nr\7\31\2\2oq\7\35\2\2po\3\2\2\2qt\3\2\2"+
+		"\2rs\3\2\2\2rp\3\2\2\2s\u008a\3\2\2\2tr\3\2\2\2uw\7\33\2\2vu\3\2\2\2w"+
+		"z\3\2\2\2xy\3\2\2\2xv\3\2\2\2y~\3\2\2\2zx\3\2\2\2{}\7\35\2\2|{\3\2\2\2"+
+		"}\u0080\3\2\2\2~\177\3\2\2\2~|\3\2\2\2\177\u0084\3\2\2\2\u0080~\3\2\2"+
+		"\2\u0081\u0083\7\33\2\2\u0082\u0081\3\2\2\2\u0083\u0086\3\2\2\2\u0084"+
+		"\u0085\3\2\2\2\u0084\u0082\3\2\2\2\u0085\u0087\3\2\2\2\u0086\u0084\3\2"+
+		"\2\2\u0087\u0088\7\32\2\2\u0088\u008a\b\r\1\2\u0089n\3\2\2\2\u0089x\3"+
+		"\2\2\2\u008a\31\3\2\2\2\u008b\u008c\7\17\2\2\u008c\u008d\7\36\2\2\u008d"+
+		"\u008e\7\23\2\2\u008e\u008f\7\35\2\2\u008f\u0091\7\30\2\2\u0090\u0092"+
+		"\5\30\r\2\u0091\u0090\3\2\2\2\u0091\u0092\3\2\2\2\u0092\u0093\3\2\2\2"+
+		"\u0093\u0094\b\16\1\2\u0094\33\3\2\2\2\f!\61Tcrx~\u0084\u0089\u0091";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

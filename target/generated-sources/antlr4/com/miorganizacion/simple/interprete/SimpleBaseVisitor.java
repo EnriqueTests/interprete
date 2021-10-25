@@ -59,7 +59,7 @@ public class SimpleBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDeclaracion_de_diseno(SimpleParser.Declaracion_de_disenoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDeclaracion_de_disenador(SimpleParser.Declaracion_de_disenadorContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

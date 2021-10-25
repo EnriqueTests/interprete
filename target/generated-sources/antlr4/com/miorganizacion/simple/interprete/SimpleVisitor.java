@@ -47,11 +47,11 @@ public interface SimpleVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeclaracion_de_revision(SimpleParser.Declaracion_de_revisionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_diseno}.
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_disenador}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDeclaracion_de_diseno(SimpleParser.Declaracion_de_disenoContext ctx);
+	T visitDeclaracion_de_disenador(SimpleParser.Declaracion_de_disenadorContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_compania}.
 	 * @param ctx the parse tree
