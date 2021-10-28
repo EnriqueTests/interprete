@@ -1,5 +1,9 @@
 // Generated from com\miorganizacion\simple\interprete\Simple.g4 by ANTLR 4.9.2
 package com.miorganizacion.simple.interprete;
+
+	import java.util.Map;
+	import java.util.HashMap;
+
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -83,9 +87,21 @@ public interface SimpleVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeclaracion_de_comentario(SimpleParser.Declaracion_de_comentarioContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_asignacion_de_pin}.
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_variable_de_pin}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDeclaracion_de_asignacion_de_pin(SimpleParser.Declaracion_de_asignacion_de_pinContext ctx);
+	T visitDeclaracion_de_variable_de_pin(SimpleParser.Declaracion_de_variable_de_pinContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleParser#expresion_numerica}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpresion_numerica(SimpleParser.Expresion_numericaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_asignacion_de_variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaracion_de_asignacion_de_variable(SimpleParser.Declaracion_de_asignacion_de_variableContext ctx);
 }

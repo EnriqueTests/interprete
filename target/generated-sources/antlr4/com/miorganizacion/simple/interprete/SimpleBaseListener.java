@@ -1,6 +1,10 @@
 // Generated from Simple.g4 by ANTLR 4.4
 package com.miorganizacion.simple.interprete;
 
+	import java.util.Map;
+	import java.util.HashMap;
+
+
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -77,6 +81,18 @@ public class SimpleBaseListener implements SimpleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterExpresion_numerica(@NotNull SimpleParser.Expresion_numericaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpresion_numerica(@NotNull SimpleParser.Expresion_numericaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrograma(@NotNull SimpleParser.ProgramaContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -125,6 +141,18 @@ public class SimpleBaseListener implements SimpleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaracion_de_variable_de_pin(@NotNull SimpleParser.Declaracion_de_variable_de_pinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_variable_de_pin(@NotNull SimpleParser.Declaracion_de_variable_de_pinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaracion_de_fecha(@NotNull SimpleParser.Declaracion_de_fechaContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -149,18 +177,6 @@ public class SimpleBaseListener implements SimpleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaracion_de_asignacion_de_pin(@NotNull SimpleParser.Declaracion_de_asignacion_de_pinContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclaracion_de_asignacion_de_pin(@NotNull SimpleParser.Declaracion_de_asignacion_de_pinContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterDeclaracion_de_location(@NotNull SimpleParser.Declaracion_de_locationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -168,6 +184,18 @@ public class SimpleBaseListener implements SimpleListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaracion_de_location(@NotNull SimpleParser.Declaracion_de_locationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracion_de_asignacion_de_variable(@NotNull SimpleParser.Declaracion_de_asignacion_de_variableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_asignacion_de_variable(@NotNull SimpleParser.Declaracion_de_asignacion_de_variableContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
