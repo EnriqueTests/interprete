@@ -87,11 +87,11 @@ public interface SimpleVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeclaracion_de_comentario(SimpleParser.Declaracion_de_comentarioContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_variable_de_pin}.
+	 * Visit a parse tree produced by {@link SimpleParser#expresion_string}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDeclaracion_de_variable_de_pin(SimpleParser.Declaracion_de_variable_de_pinContext ctx);
+	T visitExpresion_string(SimpleParser.Expresion_stringContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SimpleParser#expresion_numerica}.
 	 * @param ctx the parse tree
@@ -99,9 +99,39 @@ public interface SimpleVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpresion_numerica(SimpleParser.Expresion_numericaContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_asignacion_de_variable}.
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_pin}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDeclaracion_de_asignacion_de_variable(SimpleParser.Declaracion_de_asignacion_de_variableContext ctx);
+	T visitDeclaracion_de_pin(SimpleParser.Declaracion_de_pinContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_variable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaracion_de_variable(SimpleParser.Declaracion_de_variableContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_constante_0}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaracion_de_constante_0(SimpleParser.Declaracion_de_constante_0Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_constante_1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaracion_de_constante_1(SimpleParser.Declaracion_de_constante_1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_constante_2}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaracion_de_constante_2(SimpleParser.Declaracion_de_constante_2Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link SimpleParser#declaracion_de_constante_3}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclaracion_de_constante_3(SimpleParser.Declaracion_de_constante_3Context ctx);
 }

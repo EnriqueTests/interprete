@@ -93,6 +93,18 @@ public class SimpleBaseListener implements SimpleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterExpresion_string(@NotNull SimpleParser.Expresion_stringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpresion_string(@NotNull SimpleParser.Expresion_stringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrograma(@NotNull SimpleParser.ProgramaContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -129,6 +141,18 @@ public class SimpleBaseListener implements SimpleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDeclaracion_de_constante_1(@NotNull SimpleParser.Declaracion_de_constante_1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_constante_1(@NotNull SimpleParser.Declaracion_de_constante_1Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaracion_de_comentario(@NotNull SimpleParser.Declaracion_de_comentarioContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -141,13 +165,61 @@ public class SimpleBaseListener implements SimpleListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDeclaracion_de_variable_de_pin(@NotNull SimpleParser.Declaracion_de_variable_de_pinContext ctx) { }
+	@Override public void enterDeclaracion_de_constante_0(@NotNull SimpleParser.Declaracion_de_constante_0Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDeclaracion_de_variable_de_pin(@NotNull SimpleParser.Declaracion_de_variable_de_pinContext ctx) { }
+	@Override public void exitDeclaracion_de_constante_0(@NotNull SimpleParser.Declaracion_de_constante_0Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracion_de_constante_3(@NotNull SimpleParser.Declaracion_de_constante_3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_constante_3(@NotNull SimpleParser.Declaracion_de_constante_3Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracion_de_constante_2(@NotNull SimpleParser.Declaracion_de_constante_2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_constante_2(@NotNull SimpleParser.Declaracion_de_constante_2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracion_de_pin(@NotNull SimpleParser.Declaracion_de_pinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_pin(@NotNull SimpleParser.Declaracion_de_pinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDeclaracion_de_variable(@NotNull SimpleParser.Declaracion_de_variableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDeclaracion_de_variable(@NotNull SimpleParser.Declaracion_de_variableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -184,18 +256,6 @@ public class SimpleBaseListener implements SimpleListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDeclaracion_de_location(@NotNull SimpleParser.Declaracion_de_locationContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeclaracion_de_asignacion_de_variable(@NotNull SimpleParser.Declaracion_de_asignacion_de_variableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeclaracion_de_asignacion_de_variable(@NotNull SimpleParser.Declaracion_de_asignacion_de_variableContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

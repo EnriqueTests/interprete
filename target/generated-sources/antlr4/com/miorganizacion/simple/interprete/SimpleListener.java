@@ -73,6 +73,16 @@ public interface SimpleListener extends ParseTreeListener {
 	 */
 	void exitExpresion_numerica(@NotNull SimpleParser.Expresion_numericaContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SimpleParser#expresion_string}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpresion_string(@NotNull SimpleParser.Expresion_stringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SimpleParser#expresion_string}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpresion_string(@NotNull SimpleParser.Expresion_stringContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SimpleParser#programa}.
 	 * @param ctx the parse tree
 	 */
@@ -103,6 +113,16 @@ public interface SimpleListener extends ParseTreeListener {
 	 */
 	void exitDeclaracion_de_compania(@NotNull SimpleParser.Declaracion_de_companiaContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_constante_1}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracion_de_constante_1(@NotNull SimpleParser.Declaracion_de_constante_1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_constante_1}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracion_de_constante_1(@NotNull SimpleParser.Declaracion_de_constante_1Context ctx);
+	/**
 	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_comentario}.
 	 * @param ctx the parse tree
 	 */
@@ -113,15 +133,55 @@ public interface SimpleListener extends ParseTreeListener {
 	 */
 	void exitDeclaracion_de_comentario(@NotNull SimpleParser.Declaracion_de_comentarioContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_variable_de_pin}.
+	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_constante_0}.
 	 * @param ctx the parse tree
 	 */
-	void enterDeclaracion_de_variable_de_pin(@NotNull SimpleParser.Declaracion_de_variable_de_pinContext ctx);
+	void enterDeclaracion_de_constante_0(@NotNull SimpleParser.Declaracion_de_constante_0Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_variable_de_pin}.
+	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_constante_0}.
 	 * @param ctx the parse tree
 	 */
-	void exitDeclaracion_de_variable_de_pin(@NotNull SimpleParser.Declaracion_de_variable_de_pinContext ctx);
+	void exitDeclaracion_de_constante_0(@NotNull SimpleParser.Declaracion_de_constante_0Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_constante_3}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracion_de_constante_3(@NotNull SimpleParser.Declaracion_de_constante_3Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_constante_3}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracion_de_constante_3(@NotNull SimpleParser.Declaracion_de_constante_3Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_constante_2}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracion_de_constante_2(@NotNull SimpleParser.Declaracion_de_constante_2Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_constante_2}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracion_de_constante_2(@NotNull SimpleParser.Declaracion_de_constante_2Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_pin}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracion_de_pin(@NotNull SimpleParser.Declaracion_de_pinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_pin}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracion_de_pin(@NotNull SimpleParser.Declaracion_de_pinContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_variable}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclaracion_de_variable(@NotNull SimpleParser.Declaracion_de_variableContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_variable}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclaracion_de_variable(@NotNull SimpleParser.Declaracion_de_variableContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_fecha}.
 	 * @param ctx the parse tree
@@ -152,14 +212,4 @@ public interface SimpleListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDeclaracion_de_location(@NotNull SimpleParser.Declaracion_de_locationContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SimpleParser#declaracion_de_asignacion_de_variable}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeclaracion_de_asignacion_de_variable(@NotNull SimpleParser.Declaracion_de_asignacion_de_variableContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SimpleParser#declaracion_de_asignacion_de_variable}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeclaracion_de_asignacion_de_variable(@NotNull SimpleParser.Declaracion_de_asignacion_de_variableContext ctx);
 }
