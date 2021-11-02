@@ -1,6 +1,7 @@
 package com.miorganizacion.simple.interprete;
 
 import java.io.IOException;
+
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -23,7 +24,8 @@ public class Main {
             SimpleParser.ProgramaContext tree = parser.programa();
             SimpleCustomVisitor visitor = new SimpleCustomVisitor();
             visitor.visit(tree);
-
+            
+            System.out.println();
             System.out.println("FINISH: " + file);
         }
     }
