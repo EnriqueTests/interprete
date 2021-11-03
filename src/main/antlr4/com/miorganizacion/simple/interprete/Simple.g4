@@ -9,9 +9,14 @@ grammar Simple;
 @parser::members {
 	Map<Object, Integer> symbolTable = new HashMap<Object, Integer>();
 	
+	int contador_de_pines;
+	int contador_de_pines_de_salida;
+	int contador_de_errores;
+	
 	int [] pines = new int [16];
 	int [] pines_de_salida = new int [8];
-	String [][] operacion_de_pines_de_salida = new String [8][2];
+	
+	String [] operacion_de_pines_de_salida = new String [8];
 }
 
 programa: 
@@ -107,33 +112,16 @@ declaracion_de_pin:
 					IDENTIFICADOR 
 					PUNTO_Y_COMA*
 					{
-						int numero = $expresion_numerica.value;
-						
-						if(numero == 10 || numero == 20) {
-							System.out.println(
-								"ERROR: El PIN " + 
-								numero + 
-								" no puede ser usado como entrada o salida"
-							);
-						}
-						else {
-							if(numero > 20) {
-								System.out.println(
-									"ERROR: El PIN " + 
-									numero + 
-									" no existe"
-								);
-							} else {
-								System.out.println(
-									"Usando el PIN " + 
-									numero
-								);
-								
-								symbolTable.put(
-									$IDENTIFICADOR.text, 
-									numero
-								);
-							}
+						if(contador_de_pines < 16) {
+							int numero_de_pin = $expresion_numerica.value;
+							
+							symbolTable.put($IDENTIFICADOR.text, numero_de_pin);
+							
+							pines[contador_de_pines] = numero_de_pin;
+							contador_de_pines++;
+						} else {
+							System.out.println("***ERROR: solo puedes usar 16 PINES***");
+							contador_de_errores++;
 						}
 					};
 declaracion_de_variable:
@@ -142,22 +130,25 @@ declaracion_de_variable:
 					expresion_string
 					PUNTO_Y_COMA*
 					{
-						String pin_de_salida = String.valueOf(symbolTable.get($IDENTIFICADOR.text));
-						
-						int numero_de_pin = Integer.parseInt(pin_de_salida);
-						int numero_de_pin_correcto = numero_de_pin - 12;
-						
-						if(numero_de_pin_correcto < 0) {
-							System.out.println(
-								"ERROR: el PIN " + 
-								numero_de_pin + 
-								" no puede ser utilizado como salida"
-							);
+						if(contador_de_pines_de_salida > 7) {
+							System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+							
+							contador_de_errores++;
 						} else {
-							System.out.println(
-								"PIN de salida: " + 
-								pin_de_salida
-							);
+							String pin_de_salida = String.valueOf(symbolTable.get($IDENTIFICADOR.text));
+							int numero_de_pin = Integer.parseInt(pin_de_salida);
+							int indice = numero_de_pin - 12;
+							
+							if(indice > 7 || indice < 0) {
+								System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+							
+								contador_de_errores++;
+							} else {
+								pines_de_salida[contador_de_pines_de_salida] = numero_de_pin;
+								contador_de_pines_de_salida++;
+							
+								operacion_de_pines_de_salida[indice] = String.valueOf(symbolTable.get($expresion_string.value));
+							}
 						}
 					};
 declaracion_de_constante_0:

@@ -73,9 +73,14 @@ public class SimpleParser extends Parser {
 
 		Map<Object, Integer> symbolTable = new HashMap<Object, Integer>();
 		
+		int contador_de_pines;
+		int contador_de_pines_de_salida;
+		int contador_de_errores;
+		
 		int [] pines = new int [16];
 		int [] pines_de_salida = new int [8];
-		String [][] operacion_de_pines_de_salida = new String [8][2];
+		
+		String [] operacion_de_pines_de_salida = new String [8];
 
 	public SimpleParser(TokenStream input) {
 		super(input);
@@ -1141,33 +1146,16 @@ public class SimpleParser extends Parser {
 				_la = _input.LA(1);
 			}
 
-									int numero = ((Declaracion_de_pinContext)_localctx).expresion_numerica.value;
-									
-									if(numero == 10 || numero == 20) {
-										System.out.println(
-											"ERROR: El PIN " + 
-											numero + 
-											" no puede ser usado como entrada o salida"
-										);
-									}
-									else {
-										if(numero > 20) {
-											System.out.println(
-												"ERROR: El PIN " + 
-												numero + 
-												" no existe"
-											);
-										} else {
-											System.out.println(
-												"Usando el PIN " + 
-												numero
-											);
-											
-											symbolTable.put(
-												(((Declaracion_de_pinContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_pinContext)_localctx).IDENTIFICADOR.getText():null), 
-												numero
-											);
-										}
+									if(contador_de_pines < 16) {
+										int numero_de_pin = ((Declaracion_de_pinContext)_localctx).expresion_numerica.value;
+										
+										symbolTable.put((((Declaracion_de_pinContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_pinContext)_localctx).IDENTIFICADOR.getText():null), numero_de_pin);
+										
+										pines[contador_de_pines] = numero_de_pin;
+										contador_de_pines++;
+									} else {
+										System.out.println("***ERROR: solo puedes usar 16 PINES***");
+										contador_de_errores++;
 									}
 								
 			}
@@ -1185,6 +1173,7 @@ public class SimpleParser extends Parser {
 
 	public static class Declaracion_de_variableContext extends ParserRuleContext {
 		public Token IDENTIFICADOR;
+		public Expresion_stringContext expresion_string;
 		public TerminalNode PUNTO_Y_COMA(int i) {
 			return getToken(SimpleParser.PUNTO_Y_COMA, i);
 		}
@@ -1217,7 +1206,7 @@ public class SimpleParser extends Parser {
 			{
 			setState(206); ((Declaracion_de_variableContext)_localctx).IDENTIFICADOR = match(IDENTIFICADOR);
 			setState(207); match(ASIGNACION);
-			setState(208); expresion_string();
+			setState(208); ((Declaracion_de_variableContext)_localctx).expresion_string = expresion_string();
 			setState(212);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -1232,22 +1221,25 @@ public class SimpleParser extends Parser {
 				_la = _input.LA(1);
 			}
 
-									String pin_de_salida = String.valueOf(symbolTable.get((((Declaracion_de_variableContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_variableContext)_localctx).IDENTIFICADOR.getText():null)));
-									
-									int numero_de_pin = Integer.parseInt(pin_de_salida);
-									int numero_de_pin_correcto = numero_de_pin - 12;
-									
-									if(numero_de_pin_correcto < 0) {
-										System.out.println(
-											"ERROR: el PIN " + 
-											numero_de_pin + 
-											" no puede ser utilizado como salida"
-										);
+									if(contador_de_pines_de_salida > 7) {
+										System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+										
+										contador_de_errores++;
 									} else {
-										System.out.println(
-											"PIN de salida: " + 
-											pin_de_salida
-										);
+										String pin_de_salida = String.valueOf(symbolTable.get((((Declaracion_de_variableContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_variableContext)_localctx).IDENTIFICADOR.getText():null)));
+										int numero_de_pin = Integer.parseInt(pin_de_salida);
+										int indice = numero_de_pin - 12;
+										
+										if(indice > 7 || indice < 0) {
+											System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+										
+											contador_de_errores++;
+										} else {
+											pines_de_salida[contador_de_pines_de_salida] = numero_de_pin;
+											contador_de_pines_de_salida++;
+										
+											operacion_de_pines_de_salida[indice] = String.valueOf(symbolTable.get(((Declaracion_de_variableContext)_localctx).expresion_string.value));
+										}
 									}
 								
 			}

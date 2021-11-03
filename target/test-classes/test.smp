@@ -15,8 +15,6 @@ Programa
 	PIN  6   = I1                        ; /* pin 6                                */ 
 	PIN  7   = I2                        ; /* pin 7                                */ 
 	PIN  8   = I3                        ; /* pin 8                                */ 
-	PIN 10 = JU;
-	PIN 200 = TY;
 	
 	/* *************** OUTPUT PINS *********************/
 	PIN  12   = C                        ; /* pin 12                                */ 
