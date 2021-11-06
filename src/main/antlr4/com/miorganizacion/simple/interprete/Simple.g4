@@ -11,12 +11,15 @@ grammar Simple;
 	
 	int contador_de_pines;
 	int contador_de_pines_de_salida;
-	int contador_de_errores;
+	boolean contador_de_errores = false;
 	
 	int [] pines = new int [16];
 	int [] pines_de_salida = new int [8];
 	
+	String [] nombre_de_pines = new String [16];
+	String [] nombre_de_pines_de_salida = new String [8];
 	String [] operacion_de_pines_de_salida = new String [8];
+	String [] nombre_operacion_de_pines_de_salida = new String [8];
 }
 
 programa: 
@@ -114,14 +117,17 @@ declaracion_de_pin:
 					{
 						if(contador_de_pines < 16) {
 							int numero_de_pin = $expresion_numerica.value;
+							String identificador = $IDENTIFICADOR.text;
 							
-							symbolTable.put($IDENTIFICADOR.text, numero_de_pin);
+							symbolTable.put(identificador, numero_de_pin);
 							
 							pines[contador_de_pines] = numero_de_pin;
+							nombre_de_pines[contador_de_pines] = identificador;
+							
 							contador_de_pines++;
 						} else {
 							System.out.println("***ERROR: solo puedes usar 16 PINES***");
-							contador_de_errores++;
+							contador_de_errores = true;
 						}
 					};
 declaracion_de_variable:
@@ -133,21 +139,26 @@ declaracion_de_variable:
 						if(contador_de_pines_de_salida > 7) {
 							System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
 							
-							contador_de_errores++;
+							contador_de_errores = true;
 						} else {
-							String pin_de_salida = String.valueOf(symbolTable.get($IDENTIFICADOR.text));
+							String identificador = $IDENTIFICADOR.text;
+							String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+							
 							int numero_de_pin = Integer.parseInt(pin_de_salida);
 							int indice = numero_de_pin - 12;
 							
 							if(indice > 7 || indice < 0) {
 								System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
 							
-								contador_de_errores++;
+								contador_de_errores = true;
 							} else {
-								pines_de_salida[contador_de_pines_de_salida] = numero_de_pin;
+								pines_de_salida[indice] = numero_de_pin;
+								
 								contador_de_pines_de_salida++;
-							
-								operacion_de_pines_de_salida[indice] = String.valueOf(symbolTable.get($expresion_string.value));
+								
+								nombre_de_pines_de_salida[indice] = identificador;
+								operacion_de_pines_de_salida[indice] = String.valueOf($expresion_string.value);
+								nombre_operacion_de_pines_de_salida[indice] = $expresion_string.text;
 							}
 						}
 					};
@@ -157,16 +168,31 @@ declaracion_de_constante_0:
 					CONSTANTE_BINARIA_0_MAYUSCULA
 					PUNTO_Y_COMA*
 					{
-						System.out.println(
-							"Declarando una asignacion con constante binaria " + 
-							$IDENTIFICADOR.text + 
-							" = " + 
-							$CONSTANTE_BINARIA_0_MAYUSCULA.text
-						);
-						symbolTable.put(
-							$IDENTIFICADOR.text, 
-							100
-						);
+						if(contador_de_pines_de_salida > 7) {
+							System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+							
+							contador_de_errores = true;
+						} else {
+							String identificador = $IDENTIFICADOR.text;
+							String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+							
+							int numero_de_pin = Integer.parseInt(pin_de_salida);
+							int indice = numero_de_pin - 12;
+							
+							if(indice > 7 || indice < 0) {
+								System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+							
+								contador_de_errores = true;
+							} else {
+								pines_de_salida[indice] = numero_de_pin;
+								
+								contador_de_pines_de_salida++;
+								
+								nombre_de_pines_de_salida[indice] = identificador;
+								operacion_de_pines_de_salida[indice] = String.valueOf(0);
+								nombre_operacion_de_pines_de_salida[indice] = $CONSTANTE_BINARIA_0_MAYUSCULA.text;
+							}
+						}
 					};
 declaracion_de_constante_1:
 					IDENTIFICADOR
@@ -174,16 +200,31 @@ declaracion_de_constante_1:
 					CONSTANTE_BINARIA_1_MAYUSCULA
 					PUNTO_Y_COMA*
 					{
-						System.out.println(
-							"Declarando una asignacion con constante binaria " + 
-							$IDENTIFICADOR.text + 
-							" = " + 
-							$CONSTANTE_BINARIA_1_MAYUSCULA.text
-						);
-						symbolTable.put(
-							$IDENTIFICADOR.text, 
-							101
-						);
+						if(contador_de_pines_de_salida > 7) {
+							System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+							
+							contador_de_errores = true;
+						} else {
+							String identificador = $IDENTIFICADOR.text;
+							String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+							
+							int numero_de_pin = Integer.parseInt(pin_de_salida);
+							int indice = numero_de_pin - 12;
+							
+							if(indice > 7 || indice < 0) {
+								System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+							
+								contador_de_errores = true;
+							} else {
+								pines_de_salida[indice] = numero_de_pin;
+								
+								contador_de_pines_de_salida++;
+								
+								nombre_de_pines_de_salida[indice] = identificador;
+								operacion_de_pines_de_salida[indice] = String.valueOf(-1);
+								nombre_operacion_de_pines_de_salida[indice] = $CONSTANTE_BINARIA_1_MAYUSCULA.text;
+							}
+						}
 					};
 declaracion_de_constante_2:
 					IDENTIFICADOR
@@ -191,16 +232,31 @@ declaracion_de_constante_2:
 					CONSTANTE_BINARIA_2_MINUSCULA
 					PUNTO_Y_COMA*
 					{
-						System.out.println(
-							"Declarando una asignacion con constante binaria " + 
-							$IDENTIFICADOR.text + 
-							" = " + 
-							$CONSTANTE_BINARIA_2_MINUSCULA.text
-						);
-						symbolTable.put(
-							$IDENTIFICADOR.text, 
-							102
-						);
+						if(contador_de_pines_de_salida > 7) {
+							System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+							
+							contador_de_errores = true;
+						} else {
+							String identificador = $IDENTIFICADOR.text;
+							String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+							
+							int numero_de_pin = Integer.parseInt(pin_de_salida);
+							int indice = numero_de_pin - 12;
+							
+							if(indice > 7 || indice < 0) {
+								System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+							
+								contador_de_errores = true;
+							} else {
+								pines_de_salida[indice] = numero_de_pin;
+								
+								contador_de_pines_de_salida++;
+								
+								nombre_de_pines_de_salida[indice] = identificador;
+								operacion_de_pines_de_salida[indice] = String.valueOf(0);
+								nombre_operacion_de_pines_de_salida[indice] = $CONSTANTE_BINARIA_2_MINUSCULA.text;
+							}
+						}
 					};
 declaracion_de_constante_3:
 					IDENTIFICADOR
@@ -208,16 +264,31 @@ declaracion_de_constante_3:
 					CONSTANTE_BINARIA_3_MINUSCULA
 					PUNTO_Y_COMA*
 					{
-						System.out.println(
-							"Declarando una asignacion con constante binaria " + 
-							$IDENTIFICADOR.text + 
-							" = " + 
-							$CONSTANTE_BINARIA_3_MINUSCULA.text
-						);
-						symbolTable.put(
-							$IDENTIFICADOR.text, 
-							103
-						);
+						if(contador_de_pines_de_salida > 7) {
+							System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+							
+							contador_de_errores = true;
+						} else {
+							String identificador = $IDENTIFICADOR.text;
+							String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+							
+							int numero_de_pin = Integer.parseInt(pin_de_salida);
+							int indice = numero_de_pin - 12;
+							
+							if(indice > 7 || indice < 0) {
+								System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+							
+								contador_de_errores = true;
+							} else {
+								pines_de_salida[indice] = numero_de_pin;
+								
+								contador_de_pines_de_salida++;
+								
+								nombre_de_pines_de_salida[indice] = identificador;
+								operacion_de_pines_de_salida[indice] = String.valueOf(-1);
+								nombre_operacion_de_pines_de_salida[indice] = $CONSTANTE_BINARIA_3_MINUSCULA.text;
+							}
+						}
 					};
 
 PROGRAMA: 'Programa';

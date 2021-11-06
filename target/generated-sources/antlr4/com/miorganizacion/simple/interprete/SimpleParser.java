@@ -75,12 +75,15 @@ public class SimpleParser extends Parser {
 		
 		int contador_de_pines;
 		int contador_de_pines_de_salida;
-		int contador_de_errores;
+		boolean contador_de_errores = false;
 		
 		int [] pines = new int [16];
 		int [] pines_de_salida = new int [8];
 		
+		String [] nombre_de_pines = new String [16];
+		String [] nombre_de_pines_de_salida = new String [8];
 		String [] operacion_de_pines_de_salida = new String [8];
+		String [] nombre_operacion_de_pines_de_salida = new String [8];
 
 	public SimpleParser(TokenStream input) {
 		super(input);
@@ -1148,14 +1151,17 @@ public class SimpleParser extends Parser {
 
 									if(contador_de_pines < 16) {
 										int numero_de_pin = ((Declaracion_de_pinContext)_localctx).expresion_numerica.value;
+										String identificador = (((Declaracion_de_pinContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_pinContext)_localctx).IDENTIFICADOR.getText():null);
 										
-										symbolTable.put((((Declaracion_de_pinContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_pinContext)_localctx).IDENTIFICADOR.getText():null), numero_de_pin);
+										symbolTable.put(identificador, numero_de_pin);
 										
 										pines[contador_de_pines] = numero_de_pin;
+										nombre_de_pines[contador_de_pines] = identificador;
+										
 										contador_de_pines++;
 									} else {
 										System.out.println("***ERROR: solo puedes usar 16 PINES***");
-										contador_de_errores++;
+										contador_de_errores = true;
 									}
 								
 			}
@@ -1224,21 +1230,26 @@ public class SimpleParser extends Parser {
 									if(contador_de_pines_de_salida > 7) {
 										System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
 										
-										contador_de_errores++;
+										contador_de_errores = true;
 									} else {
-										String pin_de_salida = String.valueOf(symbolTable.get((((Declaracion_de_variableContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_variableContext)_localctx).IDENTIFICADOR.getText():null)));
+										String identificador = (((Declaracion_de_variableContext)_localctx).IDENTIFICADOR!=null?((Declaracion_de_variableContext)_localctx).IDENTIFICADOR.getText():null);
+										String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+										
 										int numero_de_pin = Integer.parseInt(pin_de_salida);
 										int indice = numero_de_pin - 12;
 										
 										if(indice > 7 || indice < 0) {
 											System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
 										
-											contador_de_errores++;
+											contador_de_errores = true;
 										} else {
-											pines_de_salida[contador_de_pines_de_salida] = numero_de_pin;
+											pines_de_salida[indice] = numero_de_pin;
+											
 											contador_de_pines_de_salida++;
-										
-											operacion_de_pines_de_salida[indice] = String.valueOf(symbolTable.get(((Declaracion_de_variableContext)_localctx).expresion_string.value));
+											
+											nombre_de_pines_de_salida[indice] = identificador;
+											operacion_de_pines_de_salida[indice] = String.valueOf(((Declaracion_de_variableContext)_localctx).expresion_string.value);
+											nombre_operacion_de_pines_de_salida[indice] = (((Declaracion_de_variableContext)_localctx).expresion_string!=null?_input.getText(((Declaracion_de_variableContext)_localctx).expresion_string.start,((Declaracion_de_variableContext)_localctx).expresion_string.stop):null);
 										}
 									}
 								
@@ -1303,16 +1314,31 @@ public class SimpleParser extends Parser {
 				_la = _input.LA(1);
 			}
 
-									System.out.println(
-										"Declarando una asignacion con constante binaria " + 
-										(((Declaracion_de_constante_0Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_0Context)_localctx).IDENTIFICADOR.getText():null) + 
-										" = " + 
-										(((Declaracion_de_constante_0Context)_localctx).CONSTANTE_BINARIA_0_MAYUSCULA!=null?((Declaracion_de_constante_0Context)_localctx).CONSTANTE_BINARIA_0_MAYUSCULA.getText():null)
-									);
-									symbolTable.put(
-										(((Declaracion_de_constante_0Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_0Context)_localctx).IDENTIFICADOR.getText():null), 
-										100
-									);
+									if(contador_de_pines_de_salida > 7) {
+										System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+										
+										contador_de_errores = true;
+									} else {
+										String identificador = (((Declaracion_de_constante_0Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_0Context)_localctx).IDENTIFICADOR.getText():null);
+										String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+										
+										int numero_de_pin = Integer.parseInt(pin_de_salida);
+										int indice = numero_de_pin - 12;
+										
+										if(indice > 7 || indice < 0) {
+											System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+										
+											contador_de_errores = true;
+										} else {
+											pines_de_salida[indice] = numero_de_pin;
+											
+											contador_de_pines_de_salida++;
+											
+											nombre_de_pines_de_salida[indice] = identificador;
+											operacion_de_pines_de_salida[indice] = String.valueOf(0);
+											nombre_operacion_de_pines_de_salida[indice] = (((Declaracion_de_constante_0Context)_localctx).CONSTANTE_BINARIA_0_MAYUSCULA!=null?((Declaracion_de_constante_0Context)_localctx).CONSTANTE_BINARIA_0_MAYUSCULA.getText():null);
+										}
+									}
 								
 			}
 		}
@@ -1375,16 +1401,31 @@ public class SimpleParser extends Parser {
 				_la = _input.LA(1);
 			}
 
-									System.out.println(
-										"Declarando una asignacion con constante binaria " + 
-										(((Declaracion_de_constante_1Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_1Context)_localctx).IDENTIFICADOR.getText():null) + 
-										" = " + 
-										(((Declaracion_de_constante_1Context)_localctx).CONSTANTE_BINARIA_1_MAYUSCULA!=null?((Declaracion_de_constante_1Context)_localctx).CONSTANTE_BINARIA_1_MAYUSCULA.getText():null)
-									);
-									symbolTable.put(
-										(((Declaracion_de_constante_1Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_1Context)_localctx).IDENTIFICADOR.getText():null), 
-										101
-									);
+									if(contador_de_pines_de_salida > 7) {
+										System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+										
+										contador_de_errores = true;
+									} else {
+										String identificador = (((Declaracion_de_constante_1Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_1Context)_localctx).IDENTIFICADOR.getText():null);
+										String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+										
+										int numero_de_pin = Integer.parseInt(pin_de_salida);
+										int indice = numero_de_pin - 12;
+										
+										if(indice > 7 || indice < 0) {
+											System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+										
+											contador_de_errores = true;
+										} else {
+											pines_de_salida[indice] = numero_de_pin;
+											
+											contador_de_pines_de_salida++;
+											
+											nombre_de_pines_de_salida[indice] = identificador;
+											operacion_de_pines_de_salida[indice] = String.valueOf(-1);
+											nombre_operacion_de_pines_de_salida[indice] = (((Declaracion_de_constante_1Context)_localctx).CONSTANTE_BINARIA_1_MAYUSCULA!=null?((Declaracion_de_constante_1Context)_localctx).CONSTANTE_BINARIA_1_MAYUSCULA.getText():null);
+										}
+									}
 								
 			}
 		}
@@ -1447,16 +1488,31 @@ public class SimpleParser extends Parser {
 				_la = _input.LA(1);
 			}
 
-									System.out.println(
-										"Declarando una asignacion con constante binaria " + 
-										(((Declaracion_de_constante_2Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_2Context)_localctx).IDENTIFICADOR.getText():null) + 
-										" = " + 
-										(((Declaracion_de_constante_2Context)_localctx).CONSTANTE_BINARIA_2_MINUSCULA!=null?((Declaracion_de_constante_2Context)_localctx).CONSTANTE_BINARIA_2_MINUSCULA.getText():null)
-									);
-									symbolTable.put(
-										(((Declaracion_de_constante_2Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_2Context)_localctx).IDENTIFICADOR.getText():null), 
-										102
-									);
+									if(contador_de_pines_de_salida > 7) {
+										System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+										
+										contador_de_errores = true;
+									} else {
+										String identificador = (((Declaracion_de_constante_2Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_2Context)_localctx).IDENTIFICADOR.getText():null);
+										String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+										
+										int numero_de_pin = Integer.parseInt(pin_de_salida);
+										int indice = numero_de_pin - 12;
+										
+										if(indice > 7 || indice < 0) {
+											System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+										
+											contador_de_errores = true;
+										} else {
+											pines_de_salida[indice] = numero_de_pin;
+											
+											contador_de_pines_de_salida++;
+											
+											nombre_de_pines_de_salida[indice] = identificador;
+											operacion_de_pines_de_salida[indice] = String.valueOf(0);
+											nombre_operacion_de_pines_de_salida[indice] = (((Declaracion_de_constante_2Context)_localctx).CONSTANTE_BINARIA_2_MINUSCULA!=null?((Declaracion_de_constante_2Context)_localctx).CONSTANTE_BINARIA_2_MINUSCULA.getText():null);
+										}
+									}
 								
 			}
 		}
@@ -1519,16 +1575,31 @@ public class SimpleParser extends Parser {
 				_la = _input.LA(1);
 			}
 
-									System.out.println(
-										"Declarando una asignacion con constante binaria " + 
-										(((Declaracion_de_constante_3Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_3Context)_localctx).IDENTIFICADOR.getText():null) + 
-										" = " + 
-										(((Declaracion_de_constante_3Context)_localctx).CONSTANTE_BINARIA_3_MINUSCULA!=null?((Declaracion_de_constante_3Context)_localctx).CONSTANTE_BINARIA_3_MINUSCULA.getText():null)
-									);
-									symbolTable.put(
-										(((Declaracion_de_constante_3Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_3Context)_localctx).IDENTIFICADOR.getText():null), 
-										103
-									);
+									if(contador_de_pines_de_salida > 7) {
+										System.out.println("***ERROR: solo puedes usar 8 PINES de salida***");
+										
+										contador_de_errores = true;
+									} else {
+										String identificador = (((Declaracion_de_constante_3Context)_localctx).IDENTIFICADOR!=null?((Declaracion_de_constante_3Context)_localctx).IDENTIFICADOR.getText():null);
+										String pin_de_salida = String.valueOf(symbolTable.get(identificador));
+										
+										int numero_de_pin = Integer.parseInt(pin_de_salida);
+										int indice = numero_de_pin - 12;
+										
+										if(indice > 7 || indice < 0) {
+											System.out.println("***ERROR: los PINES de salida son del 12 al 19***");
+										
+											contador_de_errores = true;
+										} else {
+											pines_de_salida[indice] = numero_de_pin;
+											
+											contador_de_pines_de_salida++;
+											
+											nombre_de_pines_de_salida[indice] = identificador;
+											operacion_de_pines_de_salida[indice] = String.valueOf(-1);
+											nombre_operacion_de_pines_de_salida[indice] = (((Declaracion_de_constante_3Context)_localctx).CONSTANTE_BINARIA_3_MINUSCULA!=null?((Declaracion_de_constante_3Context)_localctx).CONSTANTE_BINARIA_3_MINUSCULA.getText():null);
+										}
+									}
 								
 			}
 		}

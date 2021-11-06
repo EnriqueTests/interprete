@@ -18,7 +18,7 @@ Programa
 	
 	/* *************** OUTPUT PINS *********************/
 	PIN  12   = C                        ; /* pin 12                                */ 
-	PIN  13   = M                        ; /* pin 13                                */ 
+	PIN  19   = M                        ; /* pin 13                                */ 
 	PIN  14   = S0                       ; /* pin 14                                */ 
 	PIN  15   = S1                       ; /* pin 15                                */ 
 	PIN  16   = S2                       ; /* pin 16                                */ 
