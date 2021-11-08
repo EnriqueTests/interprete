@@ -22,8 +22,9 @@ Programa
 	PIN  14   = S0                       ; /* pin 14                                */ 
 	PIN  15   = S1                       ; /* pin 15                                */ 
 	PIN  16   = S2                       ; /* pin 16                                */ 
-	PIN  17   = S3                       ; /* pin 17                                */ 
+	PIN  17   = S3                       ; /* pin 17                                */
 	
+	C = I0			     				 ; /* variable C                            */
 	C = I0			     				 ; /* variable C                            */
 	M = I1								 ; /* variable D                            */
 	S0 = 'B'0;

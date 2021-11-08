@@ -1,11 +1,17 @@
 package com.miorganizacion.simple.interprete;
 
+import java.awt.BorderLayout;
 import java.io.IOException;
 import java.util.Arrays;
+
+import javax.swing.border.EmptyBorder;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+
+import com.miorganizacion.simple.interprete.graficos.JFrameApp;
+import com.miorganizacion.simple.interprete.graficos.JPanelVistaDeChip;
 
 public class Main {
 
@@ -41,8 +47,11 @@ public class Main {
 			String [] nombre_de_pines;
 			String [] nombre_de_pines_de_entrada;
 			String [] nombre_de_pines_de_salida;
+			
         	String [] operacion_de_pines_de_salida;
         	String [] nombre_operacion_de_pines_de_salida;
+        	
+        	JPanelVistaDeChip vistaDeChip;
         	
         	contador_de_errores = parser.contador_de_errores;
         	
@@ -60,78 +69,94 @@ public class Main {
             			pines = new int [contador_de_pines];
             			pines = Arrays.copyOf(parser.pines, contador_de_pines);
             			
-            			for(int contador = 0; contador < contador_de_pines; contador++) {
-            				if(pines[contador] == 10 || pines[contador] == 20) {
-            					System.out.println("***ERROR: El PIN " + pines[contador] + " no puede ser usado como entrada o salida***");
-            					contador_de_errores = true;
-            					break;
-            				}
-            				if(pines[contador] > 20 || pines[contador] < 1) {
-								System.out.println("***ERROR: El PIN " + pines[contador] + " no existe***");
-								contador_de_errores = true;
-								break;
-            				}
-            			}
+            			boolean repetido = elementoRepetido(pines);
             			
-            			if(contador_de_errores == false) {
-            				System.out.print("\nPINES usados: ");
-            				
-                			imprimirArreglo(pines, contador_de_pines);
+            			if(repetido) {
+            				System.out.println("\n***Hay PINES repetidos***\n");
+            			} else {
+            				for(int contador = 0; contador < contador_de_pines; contador++) {
+                				if(pines[contador] == 10 || pines[contador] == 20) {
+                					System.out.println("***ERROR: El PIN " + pines[contador] + " no puede ser usado como entrada o salida***");
+                					contador_de_errores = true;
+                					break;
+                				}
+                				if(pines[contador] > 20 || pines[contador] < 1) {
+    								System.out.println("***ERROR: El PIN " + pines[contador] + " no existe***");
+    								contador_de_errores = true;
+    								break;
+                				}
+                			}
                 			
-                			System.out.print("\nNombre de PINES usados: ");
-                			
-                			nombre_de_pines = new String[contador_de_pines];
-                			nombre_de_pines = Arrays.copyOf(parser.nombre_de_pines, contador_de_pines);             			
-                			imprimirArreglo(nombre_de_pines, contador_de_pines);
-                			
-            				pines_de_salida = new int [8];
-            				pines_de_salida = Arrays.copyOf(parser.pines_de_salida, 8);
-            				
-            				System.out.print("\n\nPINES de entrada: ");
-            				
-            				pines_de_entrada = new int [contador_de_pines];
-            				pines_de_entrada = Arrays.copyOf(pines, contador_de_pines);
-            				nombre_de_pines_de_entrada = new String [contador_de_pines];
-            				nombre_de_pines_de_entrada = Arrays.copyOf(nombre_de_pines, contador_de_pines);
-            				
-            				for(int contador = 0; contador < 8; contador++) {
-            					if(pines_de_salida[contador] > 0) {
-            						for(int Contador = 0; Contador < pines_de_entrada.length; Contador++) {
-            							if(pines_de_entrada[Contador] == pines_de_salida[contador]) {
-            								contador_salidas++;
-            								
-                    						pines_de_entrada = removeElement(pines_de_entrada, Contador);
-                    						nombre_de_pines_de_entrada = removeElement(nombre_de_pines_de_entrada, Contador);
-            							}
-            						}
-            					}
-            				}
-            				
-            				indice = contador_de_pines - contador_salidas;           				
-            				imprimirArreglo(pines_de_entrada, indice);
-            				
-            				System.out.print("\nNombre de PINES de entrada: ");
-            				
-            				imprimirArreglo(nombre_de_pines_de_entrada, indice);
-            				
-            				System.out.print("\n\nPINES de salida: ");
-            				
-            				nombre_de_pines_de_salida = Arrays.copyOf(parser.nombre_de_pines_de_salida, 8);
-            				imprimirArreglo(pines_de_salida, 8);
-            				
-            				System.out.print("\nNombre de PINES de salida: ");
-            				
-            				imprimirArreglo(nombre_de_pines_de_salida, 8);
-            				
-            				System.out.print("\n\nOperacion de PINES de salida: ");
-            				
-            				operacion_de_pines_de_salida = Arrays.copyOf(parser.operacion_de_pines_de_salida, 8);
-            				imprimirArreglo(operacion_de_pines_de_salida, 8);
-            				
-            				System.out.print("\nNombre de operacion de PINES de salida: ");
-            				
-            				nombre_operacion_de_pines_de_salida = Arrays.copyOf(parser.nombre_operacion_de_pines_de_salida, 8);
-            				imprimirArreglo(nombre_operacion_de_pines_de_salida, 8);
+                			if(contador_de_errores == false) {
+                				System.out.print("\nPINES usados: ");
+                				
+                    			imprimirArreglo(pines, contador_de_pines);
+                    			
+                    			System.out.print("\nNombre de PINES usados: ");
+                    			
+                    			nombre_de_pines = new String[contador_de_pines];
+                    			nombre_de_pines = Arrays.copyOf(parser.nombre_de_pines, contador_de_pines);             			
+                    			imprimirArreglo(nombre_de_pines, contador_de_pines);
+                    			
+                				pines_de_salida = new int [8];
+                				pines_de_salida = Arrays.copyOf(parser.pines_de_salida, 8);
+                				
+                				System.out.print("\n\nPINES de entrada: ");
+                				
+                				pines_de_entrada = new int [contador_de_pines];
+                				pines_de_entrada = Arrays.copyOf(pines, contador_de_pines);
+                				nombre_de_pines_de_entrada = new String [contador_de_pines];
+                				nombre_de_pines_de_entrada = Arrays.copyOf(nombre_de_pines, contador_de_pines);
+                				
+                				for(int contador = 0; contador < 8; contador++) {
+                					if(pines_de_salida[contador] > 0) {
+                						for(int Contador = 0; Contador < pines_de_entrada.length; Contador++) {
+                							if(pines_de_entrada[Contador] == pines_de_salida[contador]) {
+                								contador_salidas++;
+                								
+                        						pines_de_entrada = removeElement(pines_de_entrada, Contador);
+                        						nombre_de_pines_de_entrada = removeElement(nombre_de_pines_de_entrada, Contador);
+                							}
+                						}
+                					}
+                				}
+                				
+                				indice = contador_de_pines - contador_salidas;           				
+                				imprimirArreglo(pines_de_entrada, indice);
+                				
+                				System.out.print("\nNombre de PINES de entrada: ");
+                				
+                				imprimirArreglo(nombre_de_pines_de_entrada, indice);
+                				
+                				System.out.print("\n\nPINES de salida: ");
+                				
+                				nombre_de_pines_de_salida = Arrays.copyOf(parser.nombre_de_pines_de_salida, 8);
+                				imprimirArreglo(pines_de_salida, 8);
+                				
+                				System.out.print("\nNombre de PINES de salida: ");
+                				
+                				imprimirArreglo(nombre_de_pines_de_salida, 8);
+                				
+                				System.out.print("\n\nOperacion de PINES de salida: ");
+                				
+                				operacion_de_pines_de_salida = Arrays.copyOf(parser.operacion_de_pines_de_salida, 8);
+                				imprimirArreglo(operacion_de_pines_de_salida, 8);
+                				
+                				System.out.print("\nNombre de operacion de PINES de salida: ");
+                				
+                				nombre_operacion_de_pines_de_salida = Arrays.copyOf(parser.nombre_operacion_de_pines_de_salida, 8);
+                				imprimirArreglo(nombre_operacion_de_pines_de_salida, 8);
+                				
+                				JFrameApp frame = new JFrameApp();
+                				
+                				vistaDeChip = new JPanelVistaDeChip(contador_de_pines, pines_de_entrada, pines_de_salida, nombre_de_pines_de_entrada, nombre_de_pines_de_salida, operacion_de_pines_de_salida, nombre_operacion_de_pines_de_salida);
+                				vistaDeChip.setBorder(new EmptyBorder(5, 5, 5, 5));
+                				vistaDeChip.setLayout(new BorderLayout(0, 0));
+                				
+                				frame.setContentPane(vistaDeChip);
+                				
+                				frame.setVisible(true);
+                			}
             			}
             		}
                 }
@@ -165,5 +190,27 @@ public class Main {
     	for(int contador = 0; contador < limite; contador++) {
 			System.out.print(arreglo[contador] + ", ");
 		}
+    }
+    
+    public static boolean elementoRepetido(int [] array) {
+    	Arrays.sort(array);
+    	
+        boolean contador = false;
+        int aux = array[0];
+        
+        for (int i = 1; i < array.length; i++) {
+        	if(aux == 0) {
+        		aux = array[i];
+        		continue;
+        	}
+            if(aux == array[i]) {
+                contador = true;
+                break;
+            } else {
+                aux = array[i];
+            }
+        }
+        
+        return contador;
     }
 }

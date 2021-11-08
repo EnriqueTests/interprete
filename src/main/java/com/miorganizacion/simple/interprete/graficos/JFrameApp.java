@@ -1,11 +1,7 @@
 package com.miorganizacion.simple.interprete.graficos;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 public class JFrameApp extends JFrame {
 
@@ -13,7 +9,6 @@ public class JFrameApp extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -35,12 +30,10 @@ public class JFrameApp extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameApp() {
+		setResizable(false);
+		setName("JFrameApp");
+		setTitle("Probador de GAL16V8");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		setBounds(100, 100, 454, 584);
 	}
-
 }
