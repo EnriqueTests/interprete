@@ -130,22 +130,46 @@ public class Main {
                 				
                 				System.out.print("\n\nPINES de salida: ");
                 				
-                				nombre_de_pines_de_salida = Arrays.copyOf(parser.nombre_de_pines_de_salida, 8);
                 				imprimirArreglo(pines_de_salida, 8);
+                				
+                				for(int contador = 0; contador < pines_de_salida.length; contador++) {
+                					if(pines_de_salida[contador] == 0) {
+                						pines_de_salida = removeElement(pines_de_salida, contador);
+                					}
+                				}
                 				
                 				System.out.print("\nNombre de PINES de salida: ");
                 				
+                				nombre_de_pines_de_salida = Arrays.copyOf(parser.nombre_de_pines_de_salida, 8);
                 				imprimirArreglo(nombre_de_pines_de_salida, 8);
+                				
+                				for(int contador = 0; contador < nombre_de_pines_de_salida.length; contador++) {
+                					if(nombre_de_pines_de_salida[contador] == null) {
+                						nombre_de_pines_de_salida = removeElement(nombre_de_pines_de_salida, contador);
+                					}
+                				}
                 				
                 				System.out.print("\n\nOperacion de PINES de salida: ");
                 				
                 				operacion_de_pines_de_salida = Arrays.copyOf(parser.operacion_de_pines_de_salida, 8);
                 				imprimirArreglo(operacion_de_pines_de_salida, 8);
                 				
+                				for(int contador = 0; contador < operacion_de_pines_de_salida.length; contador++) {
+                					if(operacion_de_pines_de_salida[contador] == null) {
+                						operacion_de_pines_de_salida = removeElement(operacion_de_pines_de_salida, contador);
+                					}
+                				}
+                				
                 				System.out.print("\nNombre de operacion de PINES de salida: ");
                 				
                 				nombre_operacion_de_pines_de_salida = Arrays.copyOf(parser.nombre_operacion_de_pines_de_salida, 8);
                 				imprimirArreglo(nombre_operacion_de_pines_de_salida, 8);
+                				
+                				for(int contador = 0; contador < nombre_operacion_de_pines_de_salida.length; contador++) {
+                					if(nombre_operacion_de_pines_de_salida[contador] == null) {
+                						nombre_operacion_de_pines_de_salida = removeElement(nombre_operacion_de_pines_de_salida, contador);
+                					}
+                				}
                 				
                 				JFrameApp frame = new JFrameApp();
                 				
