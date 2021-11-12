@@ -377,44 +377,44 @@ public class JPanelVistaDeChip extends JPanel {
 						
 						switch(numero) {
 							case 12:
-								btn12.setForeground(new Color(255, 255, 255));
+								btn12.setForeground(new Color(0, 0, 0));
 								btn12.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn12.setBackground(new Color(255, 0, 0));
+								btn12.setBackground(new Color(229, 190, 1));
 								break;
 							case 13:
-								btn13.setForeground(new Color(255, 255, 255));
+								btn13.setForeground(new Color(0, 0, 0));
 								btn13.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn13.setBackground(new Color(255, 0, 0));
+								btn13.setBackground(new Color(229, 190, 1));
 								break;
 							case 14:
-								btn14.setForeground(new Color(255, 255, 255));
+								btn14.setForeground(new Color(0, 0, 0));
 								btn14.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn14.setBackground(new Color(255, 0, 0));
+								btn14.setBackground(new Color(229, 190, 1));
 								break;
 							case 15:
-								btn15.setForeground(new Color(255, 255, 255));
+								btn15.setForeground(new Color(0, 0, 0));
 								btn15.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn15.setBackground(new Color(255, 0, 0));
+								btn15.setBackground(new Color(229, 190, 1));
 								break;
 							case 16:
-								btn16.setForeground(new Color(255, 255, 255));
+								btn16.setForeground(new Color(0, 0, 0));
 								btn16.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn16.setBackground(new Color(255, 0, 0));
+								btn16.setBackground(new Color(229, 190, 1));
 								break;
 							case 17:
-								btn17.setForeground(new Color(255, 255, 255));
+								btn17.setForeground(new Color(0, 0, 0));
 								btn17.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn17.setBackground(new Color(255, 0, 0));
+								btn17.setBackground(new Color(229, 190, 1));
 								break;
 							case 18:
-								btn18.setForeground(new Color(255, 255, 255));
+								btn18.setForeground(new Color(0, 0, 0));
 								btn18.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn18.setBackground(new Color(255, 0, 0));
+								btn18.setBackground(new Color(229, 190, 1));
 								break;
 							case 19:
-								btn19.setForeground(new Color(255, 255, 255));
+								btn19.setForeground(new Color(0, 0, 0));
 								btn19.setFont(new Font("Tahoma", Font.BOLD, 14));
-								btn19.setBackground(new Color(255, 0, 0));
+								btn19.setBackground(new Color(229, 190, 1));
 								break;
 						}
 						
@@ -641,8 +641,8 @@ public class JPanelVistaDeChip extends JPanel {
 		comboBoxPinesDeSalidaConEcuacionesDeSalida.setBounds(10, 27, 418, 22);
 		add(comboBoxPinesDeSalidaConEcuacionesDeSalida);
 		
-		JButton btnRealizarPrueba = new JButton("Siguiente");
-		btnRealizarPrueba.setBounds(336, 513, 92, 23);
+		JButton btnRealizarPrueba = new JButton("Realizar prueba");
+		btnRealizarPrueba.setBounds(291, 513, 137, 23);
 		add(btnRealizarPrueba);
 		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn11, btn12, btn13, btn14, btn15, btn16, btn17, btn18, btn19, lblGAL16V8, lblPinesDeEntradaConNombre, comboBoxPinesDeEntradaConNombre, lblPinesDeSalidaConEcuacionesDeSalida, comboBoxPinesDeSalidaConEcuacionesDeSalida, btnRealizarPrueba}));
 		
@@ -657,8 +657,28 @@ public class JPanelVistaDeChip extends JPanel {
 		this.operacion_de_pines_de_salida = Arrays.copyOf(operacion_de_pines_de_salida, operacion_de_pines_de_salida.length);
 		this.nombre_operacion_de_pines_de_salida = Arrays.copyOf(nombre_operacion_de_pines_de_salida, nombre_operacion_de_pines_de_salida.length);
 		
+		JLabel lblPinDeEntradaSinComprobar = new JLabel("Pin de entrada sin comprobar");
+		lblPinDeEntradaSinComprobar.setForeground(Color.BLUE);
+		lblPinDeEntradaSinComprobar.setBounds(10, 513, 203, 14);
+		add(lblPinDeEntradaSinComprobar);
+		
+		JLabel lblPinDeSalidaSinComprobar = new JLabel("Pin de salida sin comprobar");
+		lblPinDeSalidaSinComprobar.setForeground(new Color(210, 105, 30));
+		lblPinDeSalidaSinComprobar.setBounds(10, 527, 174, 14);
+		add(lblPinDeSalidaSinComprobar);
+		
+		JLabel lblPinFuncionando = new JLabel("Pin funcionando");
+		lblPinFuncionando.setForeground(new Color(0, 128, 0));
+		lblPinFuncionando.setBounds(10, 540, 137, 14);
+		add(lblPinFuncionando);
+		
+		JLabel lblPinSinFuncionar = new JLabel("Pin sin funcionar");
+		lblPinSinFuncionar.setForeground(new Color(128, 0, 0));
+		lblPinSinFuncionar.setBounds(10, 552, 137, 14);
+		add(lblPinSinFuncionar);
+		
 		for(int contador = 0; contador < this.nombre_de_pines_de_salida.length; contador++) {
-			comboBoxPinesDeSalidaConEcuacionesDeSalida.addItem(this.pines_de_salida[contador] + ". " + this.nombre_de_pines_de_salida[contador] + " = " + this.nombre_operacion_de_pines_de_salida[contador]);
+			comboBoxPinesDeSalidaConEcuacionesDeSalida.addItem(this.pines_de_salida[contador] + ". " + this.nombre_de_pines_de_salida[contador] + " = " + this.operacion_de_pines_de_salida[contador]);
 			
 			switch(this.pines_de_salida[contador]) {
 				case 12:

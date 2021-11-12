@@ -30,10 +30,9 @@ public class JFrameApp extends JFrame {
 	 * Create the frame.
 	 */
 	public JFrameApp() {
-		setResizable(false);
 		setName("JFrameApp");
 		setTitle("Probador de GAL16V8");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 454, 584);
+		setBounds(100, 100, 454, 610);
 	}
 }
