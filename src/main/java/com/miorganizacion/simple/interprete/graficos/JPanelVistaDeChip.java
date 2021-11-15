@@ -8,8 +8,14 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import ConexionSerial.ConexionSerialJrIng;
+import gnu.io.PortInUseException;
+import gnu.io.UnsupportedCommOperationException;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -18,6 +24,9 @@ import java.awt.Font;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class JPanelVistaDeChip extends JPanel {
 	/**
@@ -37,6 +46,8 @@ public class JPanelVistaDeChip extends JPanel {
 	
 	private String [] operacion_de_pines_de_salida;
 	private String [] nombre_operacion_de_pines_de_salida;
+
+	private ConexionSerialJrIng Serial;
 
 	/**
 	 * Create the panel.
@@ -642,6 +653,12 @@ public class JPanelVistaDeChip extends JPanel {
 		add(comboBoxPinesDeSalidaConEcuacionesDeSalida);
 		
 		JButton btnRealizarPrueba = new JButton("Realizar prueba");
+		btnRealizarPrueba.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//Serial.Tx("Hola");
+			}
+		});
 		btnRealizarPrueba.setBounds(291, 513, 137, 23);
 		add(btnRealizarPrueba);
 		setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn11, btn12, btn13, btn14, btn15, btn16, btn17, btn18, btn19, lblGAL16V8, lblPinesDeEntradaConNombre, comboBoxPinesDeEntradaConNombre, lblPinesDeSalidaConEcuacionesDeSalida, comboBoxPinesDeSalidaConEcuacionesDeSalida, btnRealizarPrueba}));
@@ -760,5 +777,29 @@ public class JPanelVistaDeChip extends JPanel {
 					break;
 			}
 		}
+		
+		/*
+		try {
+            Serial = new ConexionSerialJrIng(9600, "COM11");
+        } catch (PortInUseException | UnsupportedCommOperationException | IOException ex) {
+            Logger.getLogger(JPanelVistaDeChip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String Mensaje = "";
+                
+                while(true) {
+                    Mensaje = Serial.SerialRead();
+                    
+                    if(Mensaje != "") {
+                    	JOptionPane.showMessageDialog(null, Mensaje);
+                        Mensaje = "";
+                    }
+                }
+            }
+        }).start();
+        */
 	}
 }
