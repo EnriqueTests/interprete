@@ -13,10 +13,6 @@ import java.util.logging.Logger;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
-import ConexionSerial.ConexionSerialJrIng;
-import gnu.io.PortInUseException;
-import gnu.io.UnsupportedCommOperationException;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
