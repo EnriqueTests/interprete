@@ -4,6 +4,7 @@ grammar Simple;
 	import java.util.Map;
 	import java.util.HashMap;
 	import java.util.Arrays;
+	import javax.swing.JOptionPane;
 }
 
 @parser::members {
@@ -152,6 +153,7 @@ declaracion_de_variable:
 							
 								contador_de_errores = true;
 							} else {
+								/*JOptionPane.showMessageDialog(null, "Hi");*/
 								pines_de_salida[indice] = numero_de_pin;
 								
 								contador_de_pines_de_salida++;

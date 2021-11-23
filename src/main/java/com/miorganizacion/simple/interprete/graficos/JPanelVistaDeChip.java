@@ -67,8 +67,6 @@ public class JPanelVistaDeChip extends JPanel {
 	}
 	
 	private Colorear color;
-
-	//private ConexionSerialJrIng Serial;
 	
 	private JButton [] botones = new JButton[20];
 
@@ -360,7 +358,6 @@ public class JPanelVistaDeChip extends JPanel {
 		btnRealizarPrueba.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Serial.Tx("Hola");
 			}
 		});
 		btnRealizarPrueba.setBounds(291, 513, 137, 23);
@@ -488,30 +485,6 @@ public class JPanelVistaDeChip extends JPanel {
 					break;
 			}
 		}
-		
-		/*
-		try {
-            Serial = new ConexionSerialJrIng(9600, "COM11");
-        } catch (PortInUseException | UnsupportedCommOperationException | IOException ex) {
-            Logger.getLogger(JPanelVistaDeChip.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String Mensaje = "";
-                
-                while(true) {
-                    Mensaje = Serial.SerialRead();
-                    
-                    if(Mensaje != "") {
-                    	JOptionPane.showMessageDialog(null, Mensaje);
-                        Mensaje = "";
-                    }
-                }
-            }
-        }).start();
-        */
 	}
 	
 	/**

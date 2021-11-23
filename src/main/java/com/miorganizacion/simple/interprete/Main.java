@@ -13,6 +13,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import com.miorganizacion.simple.interprete.graficos.JFrameApp;
 import com.miorganizacion.simple.interprete.graficos.JPanelVistaDeChip;
 
+import paquete.Principal;
+
 public class Main {
 
     private static final String EXTENSION = "smp";
@@ -178,8 +180,12 @@ public class Main {
                 				vistaDeChip.setLayout(new BorderLayout(0, 0));
                 				
                 				frame.setContentPane(vistaDeChip);
-                				
                 				frame.setVisible(true);
+                				
+                				System.out.println();
+                				System.out.println();
+                				
+                				Principal.main();
                 			}
             			}
             		}

@@ -4,6 +4,7 @@ package com.miorganizacion.simple.interprete;
 	import java.util.Map;
 	import java.util.HashMap;
 	import java.util.Arrays;
+	import javax.swing.JOptionPane;
 
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -1243,6 +1244,7 @@ public class SimpleParser extends Parser {
 										
 											contador_de_errores = true;
 										} else {
+											/*JOptionPane.showMessageDialog(null, "Hi");*/
 											pines_de_salida[indice] = numero_de_pin;
 											
 											contador_de_pines_de_salida++;
