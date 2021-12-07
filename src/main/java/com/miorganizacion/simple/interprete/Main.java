@@ -14,6 +14,7 @@ import com.miorganizacion.simple.interprete.graficos.JFrameApp;
 import com.miorganizacion.simple.interprete.graficos.JPanelVistaDeChip;
 
 import paquete.Principal;
+import paquete.Rs232;
 
 public class Main {
 
